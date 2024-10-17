@@ -14,9 +14,6 @@ jobs:
       id-token: write
       
     steps:
-      - name: Grant execute permission to gradlew
-        run: chmod +x ./gradlew
-        
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
