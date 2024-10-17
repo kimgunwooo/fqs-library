@@ -12,37 +12,59 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import static com.f4.fqs_library.constants.FQSConstants.FQS_SERVER_URL;
+import static com.f4.fqs_library.constants.FQSConstants.SECRET_KEY;
+import static com.f4.fqs_library.constants.FQSConstants.VALIDATE_ENDPOINT;
+
 @EnableConfigurationProperties(FQSClientProperties.class)
 @Configuration
 public class FQSClientConfig {
 
-    public static final String SECRET_KEY = "secretKey";
-    private static final String FQS_SERVER_URL = "http://localhost:19095/api/queue/endpoint-url";
-
     private static final Logger log = LoggerFactory.getLogger(FQSClientConfig.class);
     private final FQSClientProperties fqsClientProperties;
+    private final HttpClient client;
     private String endpointUrl;
 
     public FQSClientConfig(FQSClientProperties fqsClientProperties) {
         this.fqsClientProperties = fqsClientProperties;
+        this.client = HttpClient.newHttpClient();
     }
 
     @PostConstruct
     public void initializeEndpointUrlUsingSecretKey() {
         log.info("FQS Library Enable");
         try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(FQS_SERVER_URL))
-                    .header(SECRET_KEY, fqsClientProperties.getSecretKey())
-                    .GET()
-                    .build();
-            log.info("request : {}", request);
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            log.info("response : {}", response);
-            endpointUrl = response.body();
+            String response = sendValidationRequest();
+            handleResponse(response);
         } catch (Exception e) {
-            throw new FQSException("Failed to initialize endpoint URL", e);
+            throw new FQSException("Failed to initialize endpoint URL: " + e.getMessage(), e);
+        }
+    }
+
+    private String sendValidationRequest() throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(createValidationUri())
+            .header(SECRET_KEY, fqsClientProperties.getSecretKey())
+            .GET()
+            .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
+    }
+
+    private URI createValidationUri() throws Exception {
+        return new URI(FQS_SERVER_URL + VALIDATE_ENDPOINT + "?queueName=" + fqsClientProperties.getQueueName());
+    }
+
+    private void handleResponse(String response) {
+        if ("false".equals(response)) {
+            throw new FQSException("Queue name validation failed: " + fqsClientProperties.getQueueName());
+        }
+        if ("true".equals(response)) {
+            endpointUrl = FQS_SERVER_URL + "/" + fqsClientProperties.getQueueName() + "/queue";
+            log.debug("Endpoint URL is {}", endpointUrl);
+        } else {
+            throw new FQSException("Unexpected response from FQS server: " + response);
         }
     }
 

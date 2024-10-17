@@ -8,7 +8,17 @@ public class FQSClientProperties {
 
     private String secretKey;
 
+    private String queueName;
+
     private Level level = Level.WARN;
+
+    public String getQueueName() {
+        return queueName;
+    }
+
+    public void setQueueName(String queueName) {
+        this.queueName = queueName;
+    }
 
     public String getSecretKey() {
         return secretKey;
