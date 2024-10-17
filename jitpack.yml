@@ -8,5 +8,5 @@ before_install:
   - mvn -v
 
 install:
-  - chmod +x gradlew
-  - ./gradlew build publishToMavenLocal
+  - chmod +x ./fqs-library/gradlew
+  - ./fqs-library/gradlew build publishToMavenLocal
