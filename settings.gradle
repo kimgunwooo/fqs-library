@@ -1,3 +1,4 @@
 rootProject.name = 'library'
 
 include 'fqs-library'
+include 'example'
