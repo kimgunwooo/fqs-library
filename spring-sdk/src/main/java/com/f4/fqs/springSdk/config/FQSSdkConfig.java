@@ -1,10 +1,12 @@
-package com.f4.fqs_library.config;
+package com.f4.fqs.springSdk.config;
 
-import com.f4.fqs_library.exception.FQSException;
+import com.f4.fqs.springSdk.constants.FQSSdk;
+import com.f4.fqs.springSdk.exception.FQSException;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.net.URI;
@@ -12,21 +14,21 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import static com.f4.fqs_library.constants.FQSConstants.FQS_SERVER_URL;
-import static com.f4.fqs_library.constants.FQSConstants.SECRET_KEY;
-import static com.f4.fqs_library.constants.FQSConstants.VALIDATE_ENDPOINT;
+import static com.f4.fqs.springSdk.constants.FQSSdk.FQS_SERVER_URL;
+import static com.f4.fqs.springSdk.constants.FQSSdk.SECRET_KEY;
+import static com.f4.fqs.springSdk.constants.FQSSdk.VALIDATE_ENDPOINT;
 
-@EnableConfigurationProperties(FQSClientProperties.class)
+@EnableConfigurationProperties(FQSSdkProperties.class)
 @Configuration
-public class FQSClientConfig {
+public class FQSSdkConfig {
 
-    private static final Logger log = LoggerFactory.getLogger(FQSClientConfig.class);
-    private final FQSClientProperties fqsClientProperties;
+    private static final Logger log = LoggerFactory.getLogger(FQSSdkConfig.class);
+    private final FQSSdkProperties fqsSdkProperties;
     private final HttpClient client;
     private String endpointUrl;
 
-    public FQSClientConfig(FQSClientProperties fqsClientProperties) {
-        this.fqsClientProperties = fqsClientProperties;
+    public FQSSdkConfig(FQSSdkProperties fqsSdkProperties) {
+        this.fqsSdkProperties = fqsSdkProperties;
         this.client = HttpClient.newHttpClient();
     }
 
@@ -44,7 +46,7 @@ public class FQSClientConfig {
     private String sendValidationRequest() throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
             .uri(createValidationUri())
-            .header(SECRET_KEY, fqsClientProperties.getSecretKey())
+            .header(SECRET_KEY, fqsSdkProperties.getSecretKey())
             .GET()
             .build();
 
@@ -53,15 +55,15 @@ public class FQSClientConfig {
     }
 
     private URI createValidationUri() throws Exception {
-        return new URI(FQS_SERVER_URL + VALIDATE_ENDPOINT + "?queueName=" + fqsClientProperties.getQueueName());
+        return new URI(FQS_SERVER_URL + VALIDATE_ENDPOINT + "?queueName=" + fqsSdkProperties.getQueueName());
     }
 
     private void handleResponse(String response) {
         if ("false".equals(response)) {
-            throw new FQSException("Queue name validation failed: " + fqsClientProperties.getQueueName());
+            throw new FQSException("Queue name validation failed: " + fqsSdkProperties.getQueueName());
         }
         if ("true".equals(response)) {
-            endpointUrl = FQS_SERVER_URL + "/" + fqsClientProperties.getQueueName() + "/queue";
+            endpointUrl = FQS_SERVER_URL + "/" + fqsSdkProperties.getQueueName() + "/queue";
             log.debug("Endpoint URL is {}", endpointUrl);
         } else {
             throw new FQSException("Unexpected response from FQS server: " + response);

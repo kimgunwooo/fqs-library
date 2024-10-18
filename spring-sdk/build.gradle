@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.f4'
+group = 'com.f4.fqs'
 version = '0.0.1'
 
 java {
@@ -32,7 +32,7 @@ publishing {
         maven(MavenPublication) {
             from components.java
             groupId = project.group
-            artifactId = 'fqs-library'
+            artifactId = 'fqs-spring-sdk'
             version = project.version
         }
     }

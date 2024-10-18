@@ -1,6 +1,6 @@
-package com.f4.fqs_library.constants;
+package com.f4.fqs.springSdk.constants;
 
-public interface FQSConstants {
+public interface FQSSdk {
 
   String SECRET_KEY = "X-Secret-Key";
   String FQS_SERVER_URL = "http://localhost:19095";

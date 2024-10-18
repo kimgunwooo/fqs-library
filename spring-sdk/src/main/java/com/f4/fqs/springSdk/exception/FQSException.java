@@ -1,4 +1,4 @@
-package com.f4.fqs_library.exception;
+package com.f4.fqs.springSdk.exception;
 
 public class FQSException extends RuntimeException {
 

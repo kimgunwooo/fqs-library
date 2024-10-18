@@ -1,10 +1,10 @@
-package com.f4.fqs_library.config;
+package com.f4.fqs.springSdk.config;
 
 import org.slf4j.event.Level;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "f4.fqs")
-public class FQSClientProperties {
+public class FQSSdkProperties {
 
     private String secretKey;
 

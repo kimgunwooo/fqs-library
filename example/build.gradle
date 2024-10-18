@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation files('../fqs-library/build/libs/fqs-library-0.0.1.jar')
+    implementation files('../spring-sdk/build/libs/spring-sdk-0.0.1.jar')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
