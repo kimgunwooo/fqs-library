@@ -1,13 +1,13 @@
-package com.f4.fqs_library.example;
+package com.f4.fqs.springsdk.spring_example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExampleApplication {
+public class SpringExampleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ExampleApplication.class, args);
+        SpringApplication.run(SpringExampleApplication.class, args);
     }
 
 }

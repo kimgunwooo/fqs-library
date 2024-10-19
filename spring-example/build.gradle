@@ -4,7 +4,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
-group = 'com.f4.fqs_library'
+group = 'com.f4.fqs.springSdk'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -21,6 +21,8 @@ dependencies {
     implementation files('../spring-sdk/build/libs/spring-sdk-0.0.1.jar')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
