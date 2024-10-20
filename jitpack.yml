@@ -7,6 +7,7 @@ before_install:
   - sdk install maven
   - mvn -v
 
-install:
-  - chmod +x ./fqs-library/gradlew
-  - ./fqs-library/gradlew build publishToMavenLocal
+build:
+  commands:
+    - chmod +x ./gradlew
+    - ./gradlew clean build publish
