@@ -1,9 +1,10 @@
 package com.f4.fqs.javaSdk.sdk;
 
 import com.f4.fqs.javaSdk.config.FQSSdkConfig;
-import com.f4.fqs.javaSdk.parser.ResponseHandler;
-import com.f4.fqs.javaSdk.parser.SuccessResponseBody;
-import com.f4.fqs.javaSdk.parser.UrlBuilder;
+import com.f4.fqs.javaSdk.utils.ResponseHandler;
+import com.f4.fqs.javaSdk.response.SuccessResponseBody;
+import com.f4.fqs.javaSdk.utils.UrlBuilder;
+import com.f4.fqs.javaSdk.utils.FQSHttpClient;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.net.http.HttpResponse;

@@ -1,4 +1,4 @@
-package com.f4.fqs.springSdk.parser;
+package com.f4.fqs.springSdk.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

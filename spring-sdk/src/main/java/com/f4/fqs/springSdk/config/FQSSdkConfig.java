@@ -1,8 +1,8 @@
 package com.f4.fqs.springSdk.config;
 
 import com.f4.fqs.springSdk.exception.FQSException;
-import com.f4.fqs.springSdk.parser.UrlBuilder;
-import com.f4.fqs.springSdk.sdk.FQSHttpClient;
+import com.f4.fqs.springSdk.utils.UrlBuilder;
+import com.f4.fqs.springSdk.utils.FQSHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

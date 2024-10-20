@@ -1,6 +1,5 @@
-package com.f4.fqs.springSdk.parser;
+package com.f4.fqs.javaSdk.utils;
 
-import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 

@@ -1,8 +1,8 @@
 package com.f4.fqs.javaSdk.config;
 
 import com.f4.fqs.javaSdk.exception.FQSException;
-import com.f4.fqs.javaSdk.parser.UrlBuilder;
-import com.f4.fqs.javaSdk.sdk.FQSHttpClient;
+import com.f4.fqs.javaSdk.utils.UrlBuilder;
+import com.f4.fqs.javaSdk.utils.FQSHttpClient;
 
 import static com.f4.fqs.javaSdk.constants.FQSConstants.*;
 

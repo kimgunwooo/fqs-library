@@ -1,6 +1,9 @@
-package com.f4.fqs.javaSdk.parser;
+package com.f4.fqs.javaSdk.utils;
 
 import com.f4.fqs.javaSdk.exception.FQSException;
+import com.f4.fqs.javaSdk.response.FailedResponseBody;
+import com.f4.fqs.javaSdk.response.ResponseBody;
+import com.f4.fqs.javaSdk.response.SuccessResponseBody;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

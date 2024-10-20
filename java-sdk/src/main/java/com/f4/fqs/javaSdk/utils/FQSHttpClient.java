@@ -1,13 +1,13 @@
-package com.f4.fqs.springSdk.sdk;
+package com.f4.fqs.javaSdk.utils;
 
-import com.f4.fqs.springSdk.exception.FQSException;
+import com.f4.fqs.javaSdk.exception.FQSException;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import static com.f4.fqs.springSdk.constants.FQSConstants.*;
+import static com.f4.fqs.javaSdk.constants.FQSConstants.*;
 
 public class FQSHttpClient {
 

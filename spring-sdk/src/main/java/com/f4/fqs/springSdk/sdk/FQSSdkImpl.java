@@ -1,9 +1,10 @@
 package com.f4.fqs.springSdk.sdk;
 
 import com.f4.fqs.springSdk.config.FQSSdkConfig;
-import com.f4.fqs.springSdk.parser.ResponseHandler;
-import com.f4.fqs.springSdk.parser.SuccessResponseBody;
-import com.f4.fqs.springSdk.parser.UrlBuilder;
+import com.f4.fqs.springSdk.utils.ResponseHandler;
+import com.f4.fqs.springSdk.response.SuccessResponseBody;
+import com.f4.fqs.springSdk.utils.UrlBuilder;
+import com.f4.fqs.springSdk.utils.FQSHttpClient;
 import com.fasterxml.jackson.core.type.TypeReference;
 import jakarta.annotation.Nullable;
 

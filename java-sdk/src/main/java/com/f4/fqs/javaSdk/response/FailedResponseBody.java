@@ -1,4 +1,4 @@
-package com.f4.fqs.springSdk.parser;
+package com.f4.fqs.javaSdk.response;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
