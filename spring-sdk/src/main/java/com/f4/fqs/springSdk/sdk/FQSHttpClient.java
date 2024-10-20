@@ -1,9 +1,6 @@
 package com.f4.fqs.springSdk.sdk;
 
-import com.f4.fqs.springSdk.config.FQSSdkProperties;
 import com.f4.fqs.springSdk.exception.FQSException;
-import jakarta.annotation.Nullable;
-import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -12,22 +9,19 @@ import java.net.http.HttpResponse;
 
 import static com.f4.fqs.springSdk.constants.FQSConstants.*;
 
-@Component
 public class FQSHttpClient {
 
-    private final FQSSdkProperties fqsSdkProperties;
     private final HttpClient client;
 
-    public FQSHttpClient(FQSSdkProperties fqsSdkProperties) {
+    public FQSHttpClient() {
         this.client = HttpClient.newHttpClient();
-        this.fqsSdkProperties = fqsSdkProperties;
     }
 
-    public HttpResponse<String> sendHttpRequest(String url, String method, @Nullable String requestBody) {
+    public HttpResponse<String> sendHttpRequest(String url, String method, String requestBody, String secretKey) {
         try {
             HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
                     .uri(URI.create(url))
-                    .header(SECRET_KEY, fqsSdkProperties.getSecretKey());
+                    .header(SECRET_KEY, secretKey);
 
             switch (method.toUpperCase()) {
                 case POST:

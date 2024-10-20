@@ -1,4 +1,2 @@
 com.f4.fqs.springSdk.config.FQSSdkConfig
 com.f4.fqs.springSdk.sdk.FQSSdkImpl
-com.f4.fqs.springSdk.parser.ResponseHandler
-com.f4.fqs.springSdk.sdk.FQSHttpClient

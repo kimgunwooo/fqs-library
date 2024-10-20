@@ -18,17 +18,19 @@ public class FQSSdkConfig {
     private final FQSSdkProperties fqsSdkProperties;
     private final FQSHttpClient httpClient;
     private final String endpointUrl;
+    private final String secretKey;
 
-    public FQSSdkConfig(FQSSdkProperties fqsSdkProperties, FQSHttpClient httpClient) {
+    public FQSSdkConfig(FQSSdkProperties fqsSdkProperties) {
         this.fqsSdkProperties = fqsSdkProperties;
-        this.httpClient = httpClient;
+        this.httpClient = new FQSHttpClient();
         this.endpointUrl = initializeEndpointUrl();
+        this.secretKey = fqsSdkProperties.getSecretKey();
     }
 
     private String initializeEndpointUrl() {
         try {
             log.info("FQS Library Enable");
-            httpClient.sendHttpRequest(createValidationUri(), GET, null);
+            httpClient.sendHttpRequest(createValidationUri(), GET, null, fqsSdkProperties.getSecretKey());
             String url = UrlBuilder.builder("http://localhost:19096")
                     .path(fqsSdkProperties.getQueueName())
                     .path(QUEUE_MANAGE_ENDPOINT)
@@ -50,5 +52,9 @@ public class FQSSdkConfig {
 
     public String getEndpointUrl() {
         return endpointUrl;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
     }
 }

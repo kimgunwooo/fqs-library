@@ -4,9 +4,7 @@ import com.f4.fqs.springSdk.exception.FQSException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Component;
 
-@Component
 public class ResponseHandler {
 
     private final ObjectMapper objectMapper;

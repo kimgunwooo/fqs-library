@@ -19,10 +19,10 @@ public class FQSSdkImpl implements FQSSdk {
     private final ResponseHandler responseHandler;
     private final FQSHttpClient fqsHttpClient;
 
-    public FQSSdkImpl(FQSSdkConfig fqsSdkConfig, ResponseHandler responseHandler, FQSHttpClient fqsHttpClient) {
+    public FQSSdkImpl(FQSSdkConfig fqsSdkConfig) {
         this.fqsSdkConfig = fqsSdkConfig;
-        this.responseHandler = responseHandler;
-        this.fqsHttpClient = fqsHttpClient;
+        this.responseHandler = new ResponseHandler();
+        this.fqsHttpClient = new FQSHttpClient();
     }
 
     @Override
@@ -58,7 +58,8 @@ public class FQSSdkImpl implements FQSSdk {
     }
 
     private String sendRequestWithResponse(String path, String method, @Nullable String requestBody) {
-        HttpResponse<String> response = fqsHttpClient.sendHttpRequest(fqsSdkConfig.getEndpointUrl() + path, method, requestBody);
+        HttpResponse<String> response = fqsHttpClient
+                .sendHttpRequest(fqsSdkConfig.getEndpointUrl() + path, method, requestBody, fqsSdkConfig.getSecretKey());
         return response.body();
     }
 }
