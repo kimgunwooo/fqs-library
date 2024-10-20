@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.4' apply false
-    id 'maven-publish'
+//    id 'maven-publish'
 }
 
 group = 'com.f4.fqs'
@@ -15,7 +15,7 @@ java {
 
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
+//    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -25,15 +25,4 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
-            groupId = project.group
-            artifactId = 'fqs-spring-sdk'
-            version = project.version
-        }
-    }
 }
