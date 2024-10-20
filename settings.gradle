@@ -2,4 +2,7 @@ rootProject.name = 'library'
 
 include 'spring-sdk'
 include 'spring-example'
-include 'spring-sdk-test'
+
+include 'java-sdk'
+include 'java-example'
+
