@@ -3,7 +3,7 @@ package com.f4.fqs.javaSdk.constants;
 public interface FQSConstants {
 
   String SECRET_KEY = "X-Secret-Key";
-  String FQS_SERVER_URL = "http://localhost:19095";
+  String FQS_SERVER_URL = "http://localhost:19091";
 
   // HEADER TYPE
   String CONTENT_TYPE = "Content-Type";

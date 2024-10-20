@@ -31,7 +31,7 @@ public class FQSSdkConfig {
         try {
             log.info("FQS Library Enable");
             httpClient.sendHttpRequest(createValidationUri(), GET, null, fqsSdkProperties.getSecretKey());
-            String url = UrlBuilder.builder("http://localhost:19096")
+            String url = UrlBuilder.builder(FQS_SERVER_URL)
                     .path(fqsSdkProperties.getQueueName())
                     .path(QUEUE_MANAGE_ENDPOINT)
                     .build();

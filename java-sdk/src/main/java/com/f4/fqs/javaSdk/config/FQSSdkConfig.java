@@ -31,7 +31,7 @@ public class FQSSdkConfig {
     private String initializeEndpointUrl() {
         try {
             httpClient.sendHttpRequest(createValidationUri(), GET, null, secretKey);
-            return UrlBuilder.builder("http://localhost:19096")
+            return UrlBuilder.builder(FQS_SERVER_URL)
                     .path(queueName)
                     .path(QUEUE_MANAGE_ENDPOINT)
                     .build();
