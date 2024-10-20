@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-	implementation files('../java-sdk/build/libs/java-sdk.jar')
+	implementation project(':java-sdk')
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
