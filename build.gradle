@@ -1,44 +1,41 @@
-import org.springframework.boot.gradle.plugin.SpringBootPlugin
-
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.4' apply false
-    id 'io.spring.dependency-management' version '1.1.6'
     id 'maven-publish'
 }
 
-group = 'com.f4.fqs'
-version = '0.0.1'
+allprojects {
+    group = 'com.f4.fqs'
+    version = '1.0.0'
+}
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
     }
-}
 
-repositories {
-    mavenCentral()
-}
+    // 배포할 모듈에 대해서만 publishing 설정
+    if (project.name in ['spring-sdk', 'java-sdk']) {
+        apply plugin: 'maven-publish'
 
-dependencyManagement {
-    imports {
-        mavenBom SpringBootPlugin.BOM_COORDINATES
-    }
-}
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
+        publishing {
+            publications {
+                mavenJava(MavenPublication) {
+                    from components.java
+                    pom {
+                        name = project.name
+                        description = "Description of ${project.name}"
+                        url = 'https://github.com/kimgunwooo/FQS-sdk'
+                        licenses {
+                            license {
+                                name = 'The Apache License, Version 2.0'
+                                url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }
