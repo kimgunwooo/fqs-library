@@ -3,6 +3,7 @@
 - The Java SDK is written for Java version 17.
 - The Spring SDK is implemented for Java version 17 and Spring Boot version 3.3.4.
 - To isolate external dependencies, the SDK has been implemented with minimal dependencies.
+- 한국어 버전은 [여기](https://github.com/kimgunwooo/FQS-sdk/blob/master/docs/README-kr.md)
 
 ## 🏃‍♂️‍➡️ Getting Started
 - First, create a queue through the FQS service.
